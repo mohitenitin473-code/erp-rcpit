@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SES Student Portal</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:Segoe UI, sans-serif;
+background:#f4f6f9;
+color:#333;
+}
+
+/* LOGIN */
+.login-page{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#123d6b;
+}
+
+.login-box{
+width:420px;
+background:white;
+padding:40px;
+border-radius:15px;
+box-shadow:0 20px 50px rgba(0,0,0,0.3);
+text-align:center;
+}
+
+.login-box img{width:130px;margin-bottom:15px;}
+.login-box input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:1px solid #ccc;
+}
+.login-btn{
+width:100%;
+padding:12px;
+background:#123d6b;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* DASHBOARD */
+.dashboard{display:none;}
+
+/* SIDEBAR */
+.sidebar{
+width:260px;
+height:100vh;
+background:#123d6b;
+color:white;
+position:fixed;
+}
+.sidebar h2{text-align:center;padding:20px;border-bottom:1px solid rgba(255,255,255,0.2);}
+.sidebar ul{list-style:none;padding:0;}
+.sidebar ul li{padding:18px 25px;cursor:pointer;}
+.sidebar ul li:hover{background:#0b2b4d;}
+
+/* TOPBAR */
+.topbar{
+margin-left:260px;
+background:white;
+padding:15px 25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+.topbar-left{display:flex;align-items:center;gap:15px;}
+.topbar-left img{height:45px;}
+.topbar-right img{width:45px;border-radius:50%;}
+
+/* CONTENT */
+.content{margin-left:260px;padding:25px;}
+
+/* CARD */
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
+margin-bottom:25px;
+}
+
+/* STATUS BADGE */
+.badge{
+padding:5px 12px;
+border-radius:20px;
+background:#d4edda;
+color:#155724;
+font-size:13px;
+}
+
+/* STUDENT INFO GRID */
+.info-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.info-row{
+display:flex;
+justify-content:space-between;
+padding:8px 0;
+border-bottom:1px solid #eee;
+}
+
+/* SESSION STRIP */
+.session-strip{
+background:#eef2f7;
+padding:15px;
+display:grid;
+grid-template-columns:repeat(7,1fr);
+text-align:center;
+border-radius:8px;
+font-size:14px;
+}
+
+/* TABLE */
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+th{
+background:#123d6b;
+color:white;
+padding:12px;
+font-size:14px;
+}
+td{
+padding:10px;
+border-bottom:1px solid #eee;
+text-align:center;
+}
+.pass{color:green;font-weight:bold;}
+.fail{color:red;font-weight:bold;}
+
+.download-btn{
+background:#123d6b;
+color:white;
+padding:8px 18px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+.section-title{
+font-size:18px;
+font-weight:bold;
+margin-bottom:15px;
+color:#123d6b;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="login-page" id="loginPage">
+<div class="login-box">
+<img src="ses-logo.png">
+<h3>Student Login</h3>
+<input type="text" id="username" placeholder="User Name">
+<input type="password" id="password" placeholder="Password">
+<div id="captchaText" style="font-weight:bold;letter-spacing:4px;"></div>
+<input type="text" id="captchaInput" placeholder="Enter Captcha">
+<button class="login-btn" onclick="login()">Sign In</button>
+</div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+
+<div class="sidebar">
+<h2>SES Portal</h2>
+<ul>
+<li onclick="showInfo()">Student Information</li>
+<li onclick="showResult()">Result</li>
+</ul>
+</div>
+
+<div class="topbar">
+<div class="topbar-left">
+<img src="ses-logo.png">
+<strong>Shirpur Education Society</strong>
+</div>
+<div class="topbar-right">
+<img src="photo.jpg">
+</div>
+</div>
+
+<div class="content">
+
+<!-- STUDENT INFORMATION -->
+<div id="infoSection">
+
+<div class="card">
+<div class="section-title">Student Profile</div>
+
+<div class="info-grid">
+
+<div>
+<div class="info-row"><span>RRN No</span><span>241101038</span></div>
+<div class="info-row"><span>Student Name</span><span>MOHITE NITIN ASHOK BHAI</span></div>
+<div class="info-row"><span>User Login Status</span><span class="badge">Active</span></div>
+<div class="info-row"><span>Admission Status</span><span class="badge">Admitted</span></div>
+<div class="info-row"><span>Current Status</span><span class="badge">Admission</span></div>
+</div>
+
+<div>
+<div class="info-row"><span>Admission Batch</span><span>2024-25</span></div>
+<div class="info-row"><span>School/Institute</span><span>R C Patel Institute of Technology</span></div>
+<div class="info-row"><span>Degree</span><span>Bachelor of Technology</span></div>
+<div class="info-row"><span>Branch</span><span>Computer Engineering</span></div>
+<div class="info-row"><span>Semester</span><span>III</span></div>
+<div class="info-row"><span>Scheme</span><span>CBCS 2024-25</span></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<!-- RESULT SECTION -->
+<div id="resultSection" style="display:none;">
+
+<div class="card">
+<div class="section-title">Student Semesterwise History Details</div>
+
+<div class="session-strip">
+<div><b>Session</b><br>ODD 2025-26</div>
+<div><b>Section</b><br>CO I</div>
+<div><b>Registered Courses</b><br>12</div>
+<div><b>Registered Credits</b><br>23.00</div>
+<div><b>Earned Credits</b><br>18.00</div>
+<div><b>Result Date</b><br>25 Feb 2026</div>
+<div><button class="download-btn" onclick="downloadPDF()">Print</button></div>
+</div>
+</div>
+
+<div class="card">
+<div class="section-title">Students Session wise Details</div>
+
+<table>
+<tr>
+<th>Course Name</th>
+<th>Credit</th>
+<th>Grade</th>
+<th>Result</th>
+</tr>
+
+<tr><td>Data Structures</td><td>3</td><td>D</td><td class="pass">PASS</td></tr>
+<tr><td>Data Structures Laboratory</td><td>1</td><td>C</td><td class="pass">PASS</td></tr>
+<tr><td>Database Management System</td><td>3</td><td>F</td><td class="pass">FAIL</td></tr>
+<tr><td>Database Management System Laboratory</td><td>1</td><td>B</td><td class="pass">PASS</td></tr>
+<tr><td>Computer Networks</td><td>2</td><td>F</td><td class="fail">FAIL</td></tr>
+<tr><td>Python Programming Laboratory</td><td>1</td><td>A+</td><td class="pass">PASS</td></tr>
+<tr><td>Computational Mathematics</td><td>3</td><td>D</td><td class="fail">PASS</td></tr>
+<tr><td>Management Information System</td><td>3</td><td>D</td><td class="pass">PASS</td></tr>
+<tr><td>Semester Project-I</td><td>1</td><td>A+</td><td class="pass">PASS</td></tr>
+<tr><td>Design Thinking Laboratory</td><td>1</td><td>A+</td><td class="pass">PASS</td></tr>
+<tr><td>Universal Human Values</td><td>3</td><td>C+</td><td class="pass">PASS</td></tr>
+<tr><td>Community Engagement Service</td><td>1</td><td>O</td><td class="pass">PASS</td></tr>
+
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<script>
+let captcha;
+function generateCaptcha(){
+captcha=Math.floor(1000+Math.random()*9000);
+document.getElementById("captchaText").innerText=captcha;
+}
+generateCaptcha();
+
+function login(){
+let u=document.getElementById("username").value;
+let p=document.getElementById("password").value;
+let c=document.getElementById("captchaInput").value;
+
+if(u==="241101038" && p==="Mental555#" && c==captcha){
+document.getElementById("loginPage").style.display="none";
+document.getElementById("dashboard").style.display="block";
+}else{
+alert("Invalid Credentials or Captcha");
+generateCaptcha();
+}
+}
+
+function showInfo(){
+document.getElementById("infoSection").style.display="block";
+document.getElementById("resultSection").style.display="none";
+}
+
+function showResult(){
+document.getElementById("infoSection").style.display="none";
+document.getElementById("resultSection").style.display="block";
+}
+
+function downloadPDF(){
+window.open("result.pdf","_blank");
+}
+</script>
+
+</body>
+</html>
